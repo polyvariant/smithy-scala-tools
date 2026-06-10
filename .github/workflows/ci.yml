@@ -55,7 +55,7 @@ jobs:
         run: sbt +update
 
       - name: Check that workflows are up to date
-        run: sbt githubWorkflowCheckWithMatrixPatch
+        run: sbt githubWorkflowCheck
 
       - name: Check headers and formatting
         if: matrix.java == 'temurin@17' && matrix.os == 'ubuntu-22.04'
@@ -251,9 +251,9 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-22.04]
-        scala: [2.12.21, 3.8.3]
+        scala: [2.12.21, 3.8.4]
         java: [temurin@17]
-        test: ${{ fromJSON(needs.scripted-discover.outputs.tests) }}
+        test: [PATCH_scripted_tests_from_needs]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout current branch (full)
@@ -308,9 +308,9 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-22.04]
-        scala: [2.12.21, 3.8.3]
+        scala: [2.12.21, 3.8.4]
         java: [temurin@17]
-        test: ${{ fromJSON(needs.scripted-smithy4s-discover.outputs.tests) }}
+        test: [PATCH_scripted_smithy4s_tests_from_needs]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout current branch (full)
