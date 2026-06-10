@@ -141,7 +141,7 @@ lazy val core = project
       "software.amazon.smithy" % "smithy-docgen" % "1.71.0",
       "software.amazon.smithy" % "smithy-build" % "1.71.0",
       "com.lihaoyi" %% "os-lib" % "0.11.8",
-      "org.scalameta" %% "munit" % "1.3.1" % Test,
+      "org.scalameta" %% "munit" % "1.3.2" % Test,
     ),
     mimaPreviousArtifacts := Set.empty,
   )
@@ -151,7 +151,7 @@ lazy val sbtPlugin = project
   .settings(
     name := "smithy-scala-tools-sbt",
     libraryDependencies ++= Seq(
-      "org.scalameta" %% "munit" % "1.3.1" % Test
+      "org.scalameta" %% "munit" % "1.3.2" % Test
     ),
     pluginCrossBuild / sbtVersion := {
       scalaBinaryVersion.value match {
