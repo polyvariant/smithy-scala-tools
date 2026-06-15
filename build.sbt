@@ -156,7 +156,7 @@ lazy val sbtPlugin = project
     pluginCrossBuild / sbtVersion := {
       scalaBinaryVersion.value match {
         case "2.12" => "1.9.8"
-        case _      => "2.0.0-RC12"
+        case _      => "2.0.0"
       }
     },
     scriptedLaunchOpts :=
@@ -180,7 +180,7 @@ lazy val sbtPluginSmithy4s = project
     pluginCrossBuild / sbtVersion := {
       scalaBinaryVersion.value match {
         case "2.12" => "1.9.8"
-        case _      => "2.0.0-RC12"
+        case _      => "2.0.0"
       }
     },
     scriptedLaunchOpts :=
