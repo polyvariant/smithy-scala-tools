@@ -136,10 +136,10 @@ lazy val core = project
     name := "smithy-scala-tools-core",
     libraryDependencies ++= Seq(
       "software.amazon.smithy" % "smithy-trait-codegen" % "1.72.1",
-      "software.amazon.smithy" % "smithy-model" % "1.72.1",
+      "software.amazon.smithy" % "smithy-model" % "1.73.0",
       "software.amazon.smithy" % "smithy-syntax" % "1.72.1",
       "software.amazon.smithy" % "smithy-docgen" % "1.72.1",
-      "software.amazon.smithy" % "smithy-build" % "1.72.1",
+      "software.amazon.smithy" % "smithy-build" % "1.73.0",
       "com.lihaoyi" %% "os-lib" % "0.11.8",
       "org.scalameta" %% "munit" % "1.3.4" % Test,
     ),
