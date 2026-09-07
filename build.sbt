@@ -22,6 +22,33 @@ ThisBuild / tlFatalWarnings := false
 
 ThisBuild / mergifyStewardConfig ~= (_.map(_.withMergeMinors(true)))
 
+// The scripted jobs fan out over a matrix axis discovered at runtime (one cell
+// per test folder), so their check names can't be enumerated statically the way
+// `mergifyRequiredJobs` does — expanding the matrix here would only yield the
+// placeholder from ScriptedMatrix. Instead we gate on the check names by regex.
+//
+// Without this, mergify waited only on the `Test (...)` checks and merged PRs
+// whose scripted tests had failed (e.g. #85).
+//
+// Requiring the discover jobs to succeed proves the matrix was actually
+// populated; the negated conditions then assert that no scripted cell ended in
+// a non-success state. Note these are deliberately scoped to `Scripted (...)`
+// rather than a blanket `#check-failure=0`, which would also take mergify's own
+// always-pending "Summary" check into account and never merge.
+ThisBuild / mergifySuccessConditions ++= {
+  val scriptedCheck = "^Scripted \\("
+  Seq(
+    "check-success=Scripted (discover sbtPlugin tests) (ubuntu-22.04, temurin@17)",
+    "check-success=Scripted (discover sbtPluginSmithy4s tests) (ubuntu-22.04, temurin@17)",
+    s"-check-failure~=$scriptedCheck",
+    s"-check-cancelled~=$scriptedCheck",
+    s"-check-pending~=$scriptedCheck",
+    s"-check-stale~=$scriptedCheck",
+    s"-check-neutral~=$scriptedCheck",
+    s"-check-skipped~=$scriptedCheck",
+  ).map(MergifyCondition.Custom(_))
+}
+
 // Discover+run matrix for the sbt plugin's scripted tests. The placeholder/patch
 // trick works around an upstream bug where matrixAdds values are always quoted
 // but we need the `${{ fromJSON(...) }}` expression rendered unquoted.

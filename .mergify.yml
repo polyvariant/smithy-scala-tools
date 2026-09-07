@@ -14,6 +14,14 @@ pull_request_rules:
     - body~=labels:.*early-semver-minor
   - status-success=Test (ubuntu-22.04, 2.12, temurin@17)
   - status-success=Test (ubuntu-22.04, 3, temurin@17)
+  - check-success=Scripted (discover sbtPlugin tests) (ubuntu-22.04, temurin@17)
+  - check-success=Scripted (discover sbtPluginSmithy4s tests) (ubuntu-22.04, temurin@17)
+  - -check-failure~=^Scripted \(
+  - -check-cancelled~=^Scripted \(
+  - -check-pending~=^Scripted \(
+  - -check-stale~=^Scripted \(
+  - -check-neutral~=^Scripted \(
+  - -check-skipped~=^Scripted \(
   actions:
     merge: {}
 - name: Label core PRs
