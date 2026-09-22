@@ -200,7 +200,7 @@ lazy val sbtPluginSmithy4s = project
   .settings(
     name := "smithy-scala-tools-sbt-smithy4s",
     libraryDependencies += Defaults.sbtPluginExtra(
-      "com.disneystreaming.smithy4s" % "smithy4s-sbt-codegen" % "0.19.11",
+      "com.disneystreaming.smithy4s" % "smithy4s-sbt-codegen" % "0.19.12",
       (pluginCrossBuild / sbtBinaryVersion).value,
       (update / scalaBinaryVersion).value,
     ),
