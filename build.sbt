@@ -167,7 +167,7 @@ lazy val core = project
       "software.amazon.smithy" % "smithy-syntax" % "1.74.1",
       "software.amazon.smithy" % "smithy-docgen" % "1.74.1",
       "software.amazon.smithy" % "smithy-build" % "1.74.1",
-      "com.lihaoyi" %% "os-lib" % "0.11.9",
+      "com.lihaoyi" %% "os-lib" % "0.11.10",
       "org.scalameta" %% "munit" % "1.3.6" % Test,
     ),
     mimaPreviousArtifacts := Set.empty,
